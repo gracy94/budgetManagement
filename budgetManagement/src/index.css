@@ -101,6 +101,7 @@ header h1 {
     font-size: 2.8rem;
     text-align: center;
     margin-bottom: 2rem;
+    
 }
 
 .form input[type="text"],
@@ -111,6 +112,7 @@ header h1 {
     border: none;
     flex: 1;
     font-size: 1.6rem;
+    width: 100%;
 }
 .form input[type="submit"] {
     background-color: #730b81;
@@ -166,11 +168,11 @@ header h1 {
 }
 .alert.error {
     background-color: var(--white);
-    border-left: 5px solid #b91c1c;
-    color: #b91c1c;
+    border-left: 5px solid #8b0f0f;
+    color: #8b0f0f;
 }
 .alert.success {
-    color: #941cb9;
+    color: #b55ecf;
 }
 
 
@@ -217,6 +219,7 @@ header h1 {
     font-weight: 900;
     color: var(--violet);
 }
+
 .reset-app {
     border: none;
     background-color: #db2777;
@@ -331,7 +334,7 @@ main {
 }
 
 .new-expense img {
-    width: 5rem;
+    width: 6rem;
 }
 .new-expense img:hover {
     cursor: pointer;
@@ -339,7 +342,7 @@ main {
 
 .modal {
     position: absolute;
-    background-color: rgb(0 0 0 / 0.92);
+    background-color: rgb(0 0 0 / 0.90);
     top: 0;
     left: 0;
     right: 0;
@@ -371,7 +374,7 @@ body .modal {
     overflow: hidden;
 }
 
-.modal .form.animation {
+.modal .form.animate {
     position: relative;
     opacity: 1;
 }
