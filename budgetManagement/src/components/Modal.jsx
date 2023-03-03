@@ -2,7 +2,7 @@ import { useState } from 'react'
 import Message from './Message'
 import CloseBtn from '../img/close_icon.svg'
 
-const Modal = ({setModal, animateModal, setAnimateModal}) => {
+const Modal = ({setModal, animateModal, setAnimateModal, saveExpense}) => {
 
     const [name, setName] = useState('')
     const [quantity, setQuantity] = useState('')
@@ -29,6 +29,8 @@ const Modal = ({setModal, animateModal, setAnimateModal}) => {
             }, 3000);
             return
         }
+
+        saveExpense({name, quantity, category})
     }
 
   return (
