@@ -36,7 +36,7 @@ function App() {
   }
 
   return (
-    <div>
+    <div className={modal && 'set'}>
       <Header
         budget={budget}
         setBudget={setBudget}
