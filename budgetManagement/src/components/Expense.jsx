@@ -1,3 +1,11 @@
+import {
+    LeadingActions, 
+    SwipeableList,
+    SwipeableListItem,
+    SwipeAction,
+    TrailingActions
+} from 'react-swipeable-list'
+import 'react-swipeable-list/dist/styles.css'
 import { dateFormat } from "../helpers"
 
 import savingsIcon from '../img/savings_icon.svg'
@@ -22,24 +30,28 @@ const Expense = ({expense}) => {
   const {category, name, quantity, id, date} = expense
   
    return (
-    <div className="expense shadow">
-        <div className="content-amount">
-            <img 
-                src={iconDictionary[category]}
-                alt="Icon" 
-            />
-            <div className="expense-description">
-                <p className="category">{category}</p>
-                <p className="expense-name">{name}</p>
-                <p className="expense-date">
-                    Added on: {''}
-                    <span>{dateFormat(date)}</span>
-                </p>
-                
+    <SwipeableList>
+        <SwipeableListItem>
+            <div className="expense shadow">
+                <div className="content-amount">
+                    <img 
+                        src={iconDictionary[category]}
+                        alt="Icon" 
+                    />
+                    <div className="expense-description">
+                        <p className="category">{category}</p>
+                        <p className="expense-name">{name}</p>
+                        <p className="expense-date">
+                            Added on: {''}
+                            <span>{dateFormat(date)}</span>
+                        </p>
+                        
+                    </div>
+                </div>
+                <p className="expense-amount">${quantity}</p>
             </div>
-        </div>
-        <p className="expense-amount">${quantity}</p>
-    </div>
+        </SwipeableListItem>
+    </SwipeableList>
   )
 }
 
