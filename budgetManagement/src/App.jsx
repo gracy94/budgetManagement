@@ -36,8 +36,9 @@ function App() {
   }
 
   return (
-    <div className={modal && 'set'}>
+    <div className={modal ? 'set' : ''}>
       <Header
+        expenses = {expenses}
         budget={budget}
         setBudget={setBudget}
         validBudget={validBudget}
