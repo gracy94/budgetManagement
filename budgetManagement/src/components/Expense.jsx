@@ -26,12 +26,31 @@ const iconDictionary = {
     subscriptions: subscriptionIcon,
 }
 
-const Expense = ({expense}) => {
+const Expense = ({expense, setExpenseEdit}) => {
   const {category, name, quantity, id, date} = expense
+
+  const leadingActions = ()=> (
+    <LeadingActions>
+        <SwipeAction onClick={()=> setExpenseEdit(expense)}>
+            Edit
+        </SwipeAction>
+    </LeadingActions>
+  )
+
+  const trailingActions = ()=> (
+    <TrailingActions>
+        <SwipeAction onClick={()=> console.log('Delete')}>
+            Delete
+        </SwipeAction>
+    </TrailingActions>
+  )
   
    return (
     <SwipeableList>
-        <SwipeableListItem>
+        <SwipeableListItem
+            leadingActions={leadingActions()}
+            trailingActions={trailingActions()}
+        >
             <div className="expense shadow">
                 <div className="content-amount">
                     <img 

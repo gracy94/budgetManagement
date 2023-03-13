@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect} from 'react'
 import Header from './components/Header'
 import ExpenseList from './components/ExpenseList';
 import Modal from './components/Modal';
@@ -14,8 +14,22 @@ function App() {
 
   const [expenses, setExpenses] = useState([])
 
+  const [expenseEdit, setExpenseEdit] = useState({})
+
+  useEffect(() => {
+    if ( Object.keys(expenseEdit).length > 0 ) {
+      setModal(true)
+
+      setTimeout(() => {
+        setAnimateModal(true)
+      }, 1000);
+    }
+  }, [expenseEdit])
+  
+
   const handleNewExpense = () => {
       setModal(true)
+      setExpenseEdit({})
 
       setTimeout(() => {
         setAnimateModal(true)
@@ -50,6 +64,7 @@ function App() {
           <main>
             <ExpenseList
               expenses= {expenses}
+              setExpenseEdit = {setExpenseEdit}
             />
           </main>
           <div className="new-expense">
@@ -67,6 +82,7 @@ function App() {
                     animateModal={animateModal}
                     setAnimateModal={setAnimateModal}
                     saveExpense = {saveExpense}
+                    expenseEdit = {expenseEdit}
                 />}
     </div>
   );

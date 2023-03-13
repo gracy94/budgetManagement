@@ -1,13 +1,28 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Message from './Message'
 import CloseBtn from '../img/close_icon.svg'
 
-const Modal = ({setModal, animateModal, setAnimateModal, saveExpense}) => {
+const Modal = ({
+    setModal, 
+    animateModal, 
+    setAnimateModal, 
+    saveExpense,
+    expenseEdit
+}) => {
 
     const [name, setName] = useState('')
     const [quantity, setQuantity] = useState('')
     const [category, setCategory] = useState('')
     const [message, setMessage] = useState('')
+
+    useEffect(() => {
+        if ( Object.keys(expenseEdit).length > 0 ) {
+            setName(expenseEdit.name)
+            setQuantity(expenseEdit.quantity)
+            setCategory(expenseEdit.category)
+        }
+    }, [])
+    
 
     const hideModal = () => {
         
