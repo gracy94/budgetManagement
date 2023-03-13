@@ -14,12 +14,16 @@ const Modal = ({
     const [quantity, setQuantity] = useState('')
     const [category, setCategory] = useState('')
     const [message, setMessage] = useState('')
+    const [id, setId] = useState('')
+    const [date, setDate] = useState('')
 
     useEffect(() => {
         if ( Object.keys(expenseEdit).length > 0 ) {
             setName(expenseEdit.name)
             setQuantity(expenseEdit.quantity)
             setCategory(expenseEdit.category)
+            setId(expenseEdit.id)
+            setDate(expenseEdit.date)
         }
     }, [])
     
@@ -45,7 +49,7 @@ const Modal = ({
             return
         }
 
-        saveExpense({name, quantity, category})
+        saveExpense({name, quantity, category, id, date})
     }
 
   return (
@@ -61,7 +65,7 @@ const Modal = ({
             onSubmit={handleSubmit}
             className={`form ${animateModal ? 'animate' : 'close'}`}
         >
-            <legend>New Expense</legend>
+            <legend>{expenseEdit.name ? 'Edit Expense' : 'New Expense'}</legend>
 
             {message && <Message type="error">{message}</Message>}
             <div className='field'>
@@ -102,7 +106,10 @@ const Modal = ({
                 </select>
             </div>
 
-            <input type="submit" value="Add Expense" />
+            <input 
+                type="submit" 
+                value={expenseEdit.name ? 'Save Changes' : 'Add Expense'}
+                />
         </form>
     </div>
   )
