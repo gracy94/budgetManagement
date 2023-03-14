@@ -1,9 +1,10 @@
 import { useState, useEffect} from 'react'
-import { CircularProgressbar } from 'react-circular-progressbar';
+import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
 const BudgetControl = ({ expenses, budget}) => {
 
+    const [percentage, setPercentage] = useState(50)
     const [available, setAvailable] = useState(0)
     const [spent, setSpent] = useState(0)
     
@@ -11,8 +12,14 @@ const BudgetControl = ({ expenses, budget}) => {
       const totalSpent = expenses.reduce( (total, expense)=> expense.quantity + total, 0)
       const totalAvailable = budget - totalSpent;
 
+      const newPercentage = (((budget - totalAvailable) / budget) * 100).toFixed(2)
+
       setAvailable(totalAvailable)
       setSpent(totalSpent)
+
+      setTimeout(() => {
+        setPercentage(newPercentage)
+      }, 1500);
     }, [expenses])
     
     const formatAmount = (amount) => {
@@ -26,7 +33,13 @@ const BudgetControl = ({ expenses, budget}) => {
     <div className='container budget-container shadow two-columns'>
         <div>
             <CircularProgressbar
-                value={0}
+                value={percentage}
+                styles={buildStyles({
+                    pathColor: 'var(--violet)',
+                    trailColor: 'var(--light-gray)',
+                    textColor: 'var(--violet)'
+                })}
+                text={`${percentage}% Spent`}
             />
         </div>
         <div className='budget-content'>
