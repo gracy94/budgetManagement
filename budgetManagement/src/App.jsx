@@ -99,6 +99,7 @@ function App() {
     <div className={modal ? 'set' : ''}>
       <Header
         expenses = {expenses}
+        setExpenses = {setExpenses}
         budget={budget}
         setBudget={setBudget}
         validBudget={validBudget}
